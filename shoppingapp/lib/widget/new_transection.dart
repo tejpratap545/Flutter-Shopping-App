@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
 
-class NewTransection extends StatelessWidget {
-  final amountFocus = FocusNode();
-  final titleControler = TextEditingController(text: '');
-  final amonntControler = TextEditingController(text: '0.0');
+class NewTransection extends StatefulWidget {
   final Function _addTransection;
 
   NewTransection(this._addTransection);
+
+  @override
+  _NewTransectionState createState() => _NewTransectionState();
+}
+
+class _NewTransectionState extends State<NewTransection> {
+  final amountFocus = FocusNode();
+
+  final titleControler = TextEditingController(text: '');
+
+  final amonntControler = TextEditingController(text: '0.0');
+
   @override
   Widget build(BuildContext context) {
     void submitData() {
@@ -15,7 +24,11 @@ class NewTransection extends StatelessWidget {
         return;
       }
 
-      _addTransection(titleControler.text, double.parse(amonntControler.text));
+      widget._addTransection(
+        titleControler.text,
+        double.parse(amonntControler.text),
+      );
+      Navigator.of(context).pop();
     }
 
     return Card(

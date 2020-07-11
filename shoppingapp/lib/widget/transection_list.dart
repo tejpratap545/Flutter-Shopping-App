@@ -23,7 +23,7 @@ class TransectionList extends StatelessWidget {
                 ),
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: Colors.green,
+                    color: Theme.of(context).primaryColor,
                     width: 2,
                   ),
                 ),
@@ -32,7 +32,7 @@ class TransectionList extends StatelessWidget {
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 14,
-                    color: Colors.green,
+                    color: Theme.of(context).primaryColor,
                   ),
                 ),
               ),
@@ -41,9 +41,8 @@ class TransectionList extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     _transectionsList[index].title,
-                    style: TextStyle(
-                      color: Colors.deepPurple,
-                    ),
+                    // ignore: deprecated_member_use
+                    style: Theme.of(context).textTheme.title,
                   ),
                   Text(
                     DateFormat.yMMMMEEEEd()
