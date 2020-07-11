@@ -1,22 +1,40 @@
 import 'package:flutter/material.dart';
 
 class NewTransection extends StatelessWidget {
-  final titleControler = TextEditingController(text: 'title');
+  final amountFocus = FocusNode();
+  final titleControler = TextEditingController(text: '');
   final amonntControler = TextEditingController(text: '0.0');
   final Function _addTransection;
+
   NewTransection(this._addTransection);
   @override
   Widget build(BuildContext context) {
+    void submitData() {
+      if (titleControler.text == '' &&
+          double.parse(amonntControler.text) == 0) {
+        return;
+      }
+
+      _addTransection(titleControler.text, double.parse(amonntControler.text));
+    }
+
     return Card(
       child: Column(
         children: [
           TextField(
             decoration: InputDecoration(labelText: 'Tiltle'),
             controller: titleControler,
+            textInputAction: TextInputAction.next,
+            onSubmitted: (v) {
+              FocusScope.of(context).requestFocus(amountFocus);
+            },
           ),
           TextField(
+            focusNode: amountFocus,
             decoration: InputDecoration(labelText: 'Amont'),
+            keyboardType: TextInputType.number,
             controller: amonntControler,
+            onSubmitted: (_) => submitData(),
           ),
           FlatButton(
               textColor: Colors.purple,
@@ -25,8 +43,7 @@ class NewTransection extends StatelessWidget {
                 padding: const EdgeInsets.all(10.0),
                 child: Text('Add Trransection'),
               ),
-              onPressed: () => _addTransection(
-                  titleControler.text, double.parse(amonntControler.text))),
+              onPressed: () => submitData()),
         ],
       ),
     );

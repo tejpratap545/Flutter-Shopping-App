@@ -22,13 +22,9 @@ class HomePage extends StatelessWidget {
         title: Text('Home Page'),
         actions: [
           IconButton(
-            icon: const Icon(Icons.add_alert),
+            icon: const Icon(Icons.add),
             onPressed: null,
           ),
-          IconButton(
-            icon: const Icon(Icons.access_alarms),
-            onPressed: null,
-          )
         ],
         elevation: 10,
       ),
@@ -55,6 +51,8 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButton:
+          FloatingActionButton(child: Icon(Icons.add), onPressed: null),
     );
   }
 }

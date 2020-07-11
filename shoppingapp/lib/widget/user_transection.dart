@@ -33,7 +33,6 @@ class _UserTransectionState extends State<UserTransection> {
     setState(() {
       transections.add(newTx);
     });
-    print("hwllo" + txTitle);
   }
 
   @override
